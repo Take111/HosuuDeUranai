@@ -7,6 +7,7 @@
 
 import Foundation
 import HealthKit
+import UserNotifications
 
 @MainActor
 final class HomeViewModel: ObservableObject {
@@ -16,17 +17,28 @@ final class HomeViewModel: ObservableObject {
     private let useCase: HosuuUseCase
 
     @Published private(set) var todayComment: String = ""
+    @Published private(set) var todaImageUrl: URL?
 
     init() {
         healthStore = HKHealthStore()
         useCase = HosuuUseCaseImpl()
         let allTypes = Set([HKObjectType.quantityType(forIdentifier: .stepCount)!])
-        healthStore.requestAuthorization(toShare: [], read: allTypes) { success, error in
-            if !success {
-                print("error")
+        healthStore.requestAuthorization(toShare: [], read: allTypes) {[weak self] success, error in
+            guard let self else { return }
+            if success {
+                fetchStepCount()
+                requestNotification()
             }
         }
-        fetchStepCount()
+    }
+
+    private func requestNotification() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) {[weak self] granted, error in
+            guard let self else { return }
+            if granted {
+                useCase.setLocalNotificationIfNeeded()
+            }
+        }
     }
 
     private func fetchStepCount() {
@@ -37,14 +49,17 @@ final class HomeViewModel: ObservableObject {
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
         let query = HKStatisticsQuery(quantityType: distanceType, quantitySamplePredicate: predicate) { [weak self] query, statistics, errir in
             guard let self, let stepCount = statistics?.sumQuantity()?.doubleValue(for: HKUnit.count()) else { return }
-            fetchComment(stepCount: Int(stepCount))
+            fetchCommentAndImage(stepCount: Int(stepCount))
         }
         healthStore.execute(query)
     }
 
-    private func fetchComment(stepCount: Int) {
+    private func fetchCommentAndImage(stepCount: Int) {
         Task {
-            self.todayComment = await self.useCase.fetchTodayUranai(stepCount: stepCount, stepCountRange: StepCountRange(stepCount: stepCount))
+            let (commentValue, imageValue) = await (self.useCase.fetchTodayUranaiIfPossible(stepCount: stepCount, stepCountRange: StepCountRange(stepCount: stepCount)), self.useCase.fetchTodayImageUrlIfPossible())
+
+            self.todayComment = commentValue ?? "今日の結果はまだないよ!\n夜9時に占うね"
+            self.todaImageUrl = imageValue
         }
     }
 }

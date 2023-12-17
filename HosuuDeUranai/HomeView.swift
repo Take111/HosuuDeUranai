@@ -17,9 +17,23 @@ struct HomeView: View {
                 .font(.title)
                 .fontWeight(.bold)
                 .padding()
-            if viewModel.todayComment.isEmpty {
-                Text("今日の結果はまだないよ!\n夜9時に占うね")
-            } else {
+            AsyncImage(url: viewModel.todaImageUrl) { phase in
+                if let image = phase.image {
+                    image
+                        .resizable()
+                        .scaledToFit()
+                } else {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                        .padding()
+                        .tint(Color.white)
+                        .background(Color.gray)
+                        .cornerRadius(10)
+                }
+            }
+            .frame(width: 320, height: 320)
+            .cornerRadius(20)
+            ScrollView {
                 Text(viewModel.todayComment)
             }
             Spacer()

@@ -53,6 +53,7 @@
 		6F49BCEB2B2EE252009A4A58 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		6F49BCED2B2EE3D5009A4A58 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		6F49BCEF2B2EEA1D009A4A58 /* HosuuUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosuuUseCase.swift; sourceTree = "<group>"; };
+		6FCFB2A22B2F032C007C79F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +104,7 @@
 		6F49BCBB2B2EE1F3009A4A58 /* HosuuDeUranai */ = {
 			isa = PBXGroup;
 			children = (
+				6FCFB2A22B2F032C007C79F1 /* Info.plist */,
 				6F49BCEA2B2EE240009A4A58 /* Util */,
 				6F49BCE72B2EE212009A4A58 /* Repository */,
 				6F49BCBC2B2EE1F3009A4A58 /* HosuuDeUranaiApp.swift */,
@@ -456,6 +458,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HosuuDeUranai/Info.plist;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "1日歩数をもとに占いをするために使います";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -495,6 +498,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HosuuDeUranai/Info.plist;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "1日歩数をもとに占いをするために使います";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
