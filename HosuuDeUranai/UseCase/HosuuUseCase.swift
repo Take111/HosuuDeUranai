@@ -1,5 +1,5 @@
 //
-//  HosuuUseCase.swift
+//  ChatGPTUseCase.swift
 //  HosuuDeUranai
 //
 //  Created by 竹ノ内愛斗 on 2023/12/17.
@@ -8,13 +8,12 @@
 import Foundation
 import UserNotifications
 
-protocol HosuuUseCase {
+protocol ChatGPTUseCase {
     func fetchTodayUranaiIfPossible(stepCount: Int, stepCountRange: StepCountRange) async -> String?
-    func fetchTodayImageUrlIfPossible() async -> URL?
-    func setLocalNotificationIfNeeded()
+    func fetchTodayImageUrlIfPossible(stepCountRange: StepCountRange) async -> URL?
 }
 
-final class HosuuUseCaseImpl: HosuuUseCase {
+final class ChatGPTUseCaseImpl: ChatGPTUseCase {
 
     private let repository: ChatGPTRepository
 
@@ -37,7 +36,7 @@ final class HosuuUseCaseImpl: HosuuUseCase {
         }
     }
 
-    func fetchTodayImageUrlIfPossible() async -> URL? {
+    func fetchTodayImageUrlIfPossible(stepCountRange: StepCountRange) async -> URL? {
         // 21時以降であれば実行する
         guard Calendar.current.component(.hour, from: Date()) >= 21 else { return nil }
         do {
@@ -46,24 +45,6 @@ final class HosuuUseCaseImpl: HosuuUseCase {
             return response.url
         } catch {
             return nil
-        }
-    }
-
-    func setLocalNotificationIfNeeded() {
-        UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
-            if requests.isEmpty {
-                // 毎日21時にローカルプッシュを送信する
-                let content = UNMutableNotificationContent()
-                content.title = "今日の運勢は？"
-                content.body = "今日の運勢はどうだったかな？チェックしよう"
-                content.sound = UNNotificationSound.default
-                var dateComponents = DateComponents()
-                dateComponents.hour = 21
-                dateComponents.minute = 00
-                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-                let request = UNNotificationRequest(identifier: "dailyUranai", content: content, trigger: trigger)
-                UNUserNotificationCenter.current().add(request)
-            }
         }
     }
 }
