@@ -12,33 +12,43 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
 
     var body: some View {
-        VStack {
-            Text("歩数De占い")
-                .font(.title)
-                .fontWeight(.bold)
-                .padding()
-            AsyncImage(url: viewModel.todaImageUrl) { phase in
-                if let image = phase.image {
-                    image
-                        .resizable()
-                        .scaledToFit()
-                } else {
-                    ProgressView()
-                        .progressViewStyle(.circular)
-                        .padding()
-                        .tint(Color.white)
-                        .background(Color.gray)
-                        .cornerRadius(10)
+        ZStack {
+            VStack {
+                Text("歩数De占い")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .padding()
+                ScrollView {
+                    Text(viewModel.todayComment)
+                    AsyncImage(url: viewModel.todaImageUrl) { phase in
+                        if let image = phase.image {
+                            image
+                                .resizable()
+                                .scaledToFit()
+                        }
+                    }
+                    .frame(width: 320, height: 320)
+                    .cornerRadius(20)
                 }
+                Spacer()
             }
-            .frame(width: 320, height: 320)
-            .cornerRadius(20)
-            ScrollView {
-                Text(viewModel.todayComment)
+            .padding()
+            if viewModel.showSuccessView {
+                Text("あなたの運命を占いました")
+                     .padding(32)
+                     .tint(Color.white)
+                     .background(Color.gray)
+                     .cornerRadius(10)
             }
-            Spacer()
+            if viewModel.isLoading {
+                ProgressView()
+                    .progressViewStyle(.circular)
+                    .padding()
+                    .tint(Color.white)
+                    .background(Color.gray)
+                    .cornerRadius(10)
+            }
         }
-        .padding()
     }
 }
 

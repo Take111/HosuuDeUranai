@@ -16,8 +16,7 @@ protocol NotificationUseCase {
 final class NotificationUseCaseImpl: NotificationUseCase {
 
     func requestAuthorizationIfNeeded(completion: @escaping (Bool) -> Void) {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) {[weak self] granted, error in
-            guard let self else { return }
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
             if granted {
                 completion(true)
             } else {

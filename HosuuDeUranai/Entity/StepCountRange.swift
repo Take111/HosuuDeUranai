@@ -55,7 +55,7 @@ enum StepCountRange {
         case .low:
             return "凶の文字が画像に入って、少し怖い画像を作成してください"
         case .veryLow:
-            return "大凶の文字が画像に入って、おどろおどろしい画像を作成してください"
+            return "大凶の文字が画像に入って、ピザの画像を作成してください"
         }
     }
 }

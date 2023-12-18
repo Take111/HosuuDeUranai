@@ -17,11 +17,8 @@
 		6F49BCE92B2EE21F009A4A58 /* ChatGPTRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F49BCE82B2EE21F009A4A58 /* ChatGPTRepository.swift */; };
 		6F49BCEC2B2EE252009A4A58 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F49BCEB2B2EE252009A4A58 /* APIKey.swift */; };
 		6F49BCEE2B2EE3D5009A4A58 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F49BCED2B2EE3D5009A4A58 /* HomeViewModel.swift */; };
-		6F49BCF02B2EEA1D009A4A58 /* HosuuUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F49BCEF2B2EEA1D009A4A58 /* HosuuUseCase.swift */; };
-		6FCFB2A52B2FA796007C79F1 /* ChatCompletionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFB2A42B2FA796007C79F1 /* ChatCompletionResponse.swift */; };
-		6FCFB2A72B2FA7B1007C79F1 /* GenerationImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFB2A62B2FA7B1007C79F1 /* GenerationImageResponse.swift */; };
-		6FCFB2A92B2FA7C7007C79F1 /* GenerateImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFB2A82B2FA7C7007C79F1 /* GenerateImageRequest.swift */; };
-		6FCFB2AB2B2FA7D7007C79F1 /* ChatRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFB2AA2B2FA7D7007C79F1 /* ChatRequest.swift */; };
+		6F49BCF02B2EEA1D009A4A58 /* ChatGPTUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F49BCEF2B2EEA1D009A4A58 /* ChatGPTUseCase.swift */; };
+		6F9EAC3A2B2FB09C00401A0B /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 6F9EAC392B2FB09C00401A0B /* OpenAI */; };
 		6FCFB2AE2B2FA82C007C79F1 /* NotificationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFB2AD2B2FA82C007C79F1 /* NotificationUseCase.swift */; };
 		6FCFB2B02B2FA875007C79F1 /* HealthKitUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFB2AF2B2FA875007C79F1 /* HealthKitUseCase.swift */; };
 		6FCFB2B42B2FA8ED007C79F1 /* StepCountRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFB2B32B2FA8ED007C79F1 /* StepCountRange.swift */; };
@@ -59,12 +56,8 @@
 		6F49BCE82B2EE21F009A4A58 /* ChatGPTRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTRepository.swift; sourceTree = "<group>"; };
 		6F49BCEB2B2EE252009A4A58 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		6F49BCED2B2EE3D5009A4A58 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		6F49BCEF2B2EEA1D009A4A58 /* HosuuUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HosuuUseCase.swift; sourceTree = "<group>"; };
+		6F49BCEF2B2EEA1D009A4A58 /* ChatGPTUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTUseCase.swift; sourceTree = "<group>"; };
 		6FCFB2A22B2F032C007C79F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		6FCFB2A42B2FA796007C79F1 /* ChatCompletionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCompletionResponse.swift; sourceTree = "<group>"; };
-		6FCFB2A62B2FA7B1007C79F1 /* GenerationImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerationImageResponse.swift; sourceTree = "<group>"; };
-		6FCFB2A82B2FA7C7007C79F1 /* GenerateImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateImageRequest.swift; sourceTree = "<group>"; };
-		6FCFB2AA2B2FA7D7007C79F1 /* ChatRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRequest.swift; sourceTree = "<group>"; };
 		6FCFB2AD2B2FA82C007C79F1 /* NotificationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUseCase.swift; sourceTree = "<group>"; };
 		6FCFB2AF2B2FA875007C79F1 /* HealthKitUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitUseCase.swift; sourceTree = "<group>"; };
 		6FCFB2B32B2FA8ED007C79F1 /* StepCountRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountRange.swift; sourceTree = "<group>"; };
@@ -75,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F9EAC3A2B2FB09C00401A0B /* OpenAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,10 +170,6 @@
 		6FCFB2A32B2FA782007C79F1 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				6FCFB2A42B2FA796007C79F1 /* ChatCompletionResponse.swift */,
-				6FCFB2A62B2FA7B1007C79F1 /* GenerationImageResponse.swift */,
-				6FCFB2A82B2FA7C7007C79F1 /* GenerateImageRequest.swift */,
-				6FCFB2AA2B2FA7D7007C79F1 /* ChatRequest.swift */,
 				6FCFB2B32B2FA8ED007C79F1 /* StepCountRange.swift */,
 			);
 			path = Entity;
@@ -188,7 +178,7 @@
 		6FCFB2AC2B2FA801007C79F1 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
-				6F49BCEF2B2EEA1D009A4A58 /* HosuuUseCase.swift */,
+				6F49BCEF2B2EEA1D009A4A58 /* ChatGPTUseCase.swift */,
 				6FCFB2AD2B2FA82C007C79F1 /* NotificationUseCase.swift */,
 				6FCFB2AF2B2FA875007C79F1 /* HealthKitUseCase.swift */,
 			);
@@ -220,6 +210,9 @@
 			dependencies = (
 			);
 			name = HosuuDeUranai;
+			packageProductDependencies = (
+				6F9EAC392B2FB09C00401A0B /* OpenAI */,
+			);
 			productName = HosuuDeUranai;
 			productReference = 6F49BCB92B2EE1F3009A4A58 /* HosuuDeUranai.app */;
 			productType = "com.apple.product-type.application";
@@ -292,6 +285,9 @@
 				Base,
 			);
 			mainGroup = 6F49BCB02B2EE1F3009A4A58;
+			packageReferences = (
+				6F9EAC382B2FB09C00401A0B /* XCRemoteSwiftPackageReference "OpenAI" */,
+			);
 			productRefGroup = 6F49BCBA2B2EE1F3009A4A58 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -335,17 +331,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FCFB2AE2B2FA82C007C79F1 /* NotificationUseCase.swift in Sources */,
-				6FCFB2A52B2FA796007C79F1 /* ChatCompletionResponse.swift in Sources */,
 				6F49BCBF2B2EE1F3009A4A58 /* HomeView.swift in Sources */,
 				6F49BCE92B2EE21F009A4A58 /* ChatGPTRepository.swift in Sources */,
 				6F49BCEC2B2EE252009A4A58 /* APIKey.swift in Sources */,
 				6F49BCEE2B2EE3D5009A4A58 /* HomeViewModel.swift in Sources */,
-				6FCFB2AB2B2FA7D7007C79F1 /* ChatRequest.swift in Sources */,
 				6FCFB2B42B2FA8ED007C79F1 /* StepCountRange.swift in Sources */,
-				6FCFB2A92B2FA7C7007C79F1 /* GenerateImageRequest.swift in Sources */,
 				6FCFB2B02B2FA875007C79F1 /* HealthKitUseCase.swift in Sources */,
-				6F49BCF02B2EEA1D009A4A58 /* HosuuUseCase.swift in Sources */,
-				6FCFB2A72B2FA7B1007C79F1 /* GenerationImageResponse.swift in Sources */,
+				6F49BCF02B2EEA1D009A4A58 /* ChatGPTUseCase.swift in Sources */,
 				6F49BCBD2B2EE1F3009A4A58 /* HosuuDeUranaiApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -707,6 +699,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6F9EAC382B2FB09C00401A0B /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MacPaw/OpenAI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6F9EAC392B2FB09C00401A0B /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6F9EAC382B2FB09C00401A0B /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6F49BCB12B2EE1F3009A4A58 /* Project object */;
 }

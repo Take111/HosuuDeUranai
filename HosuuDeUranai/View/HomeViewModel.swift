@@ -16,6 +16,8 @@ final class HomeViewModel: ObservableObject {
 
     @Published private(set) var todayComment: String = ""
     @Published private(set) var todaImageUrl: URL?
+    @Published private(set) var showSuccessView: Bool = false
+    @Published private(set) var isLoading: Bool = false
 
     init() {
         chatGPTUseCase = ChatGPTUseCaseImpl()
@@ -24,6 +26,7 @@ final class HomeViewModel: ObservableObject {
 
         healhkitUseCase.requestAuthorizationIfNeeded { [weak self] success in
             guard success else { return }
+            self?.isLoading = true
             self?.fetchStepCount()
             self?.requestNotification()
         }
@@ -50,10 +53,19 @@ final class HomeViewModel: ObservableObject {
     private func fetchCommentAndImage(stepCount: Int) {
         let range = StepCountRange(stepCount: stepCount)
         Task {
-            let (commentValue, imageValue) = await (self.chatGPTUseCase.fetchTodayUranaiIfPossible(stepCount: stepCount, stepCountRange: range), self.chatGPTUseCase.fetchTodayImageUrlIfPossible(stepCountRange: range))
+            self.isLoading = false
+            // 1秒待つ
+            self.showSuccessView = true
+            try await Task.sleep(nanoseconds: 3 * 1_000_000_000)
+            self.showSuccessView = false
 
-            self.todayComment = commentValue ?? "今日の結果はまだないよ!\n夜9時に占うね"
-            self.todaImageUrl = imageValue
+            for try await result in self.chatGPTUseCase.fetchTalkStreaming(stepCount: stepCount, stepCountRange: range) {
+                DispatchQueue.main.async {
+                    self.todayComment += result.choices.first?.delta.content ?? ""
+                }
+            }
+
+            self.todaImageUrl = await self.chatGPTUseCase.fetchTodayImageUrlIfPossible(stepCountRange: range)
         }
     }
 }
